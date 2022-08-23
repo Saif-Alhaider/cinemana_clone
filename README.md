@@ -1,16 +1,16 @@
 # cinemana_clone
 
-A new Flutter project.
+Cinemana App for People who Are not Earthlink Users
 
-## Getting Started
+## Inside The App
+## Home page
+![image-1](./inside_the_app/image-1.png)
+## Moives page
+![image-2](./inside_the_app/image-2.png)
+## Series page
+![image-3](./inside_the_app/image-3.png)
+## Categories page
+![image-4](./inside_the_app/image-4.png)
+## Profile page
+![image-5](./inside_the_app/image-5.png)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
