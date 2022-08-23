@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../Reusable Widgets/text_widget.dart';
+import 'text_widget.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+  final String pageName;
+  const SearchBar({
+    Key? key,
+    required this.pageName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class SearchBar extends StatelessWidget {
             width: centeringSquare,
             height: centeringSquare,
           ),
-          const CinemanaText(text: "Home",fontsize: 25,),
+          CinemanaText(text: pageName,fontsize: 25,),
           Icon(Icons.search, size: centeringSquare, color: Colors.white)
         ],
       ),

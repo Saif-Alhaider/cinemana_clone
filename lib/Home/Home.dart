@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'ImagesModel.dart';
 import 'carousel_section.dart';
-import 'first_row_search_bar.dart';
+import '../Reusable Widgets/first_row_search_bar.dart';
 import 'movies and shows section/featured_section.dart';
 
 class Home extends StatefulWidget {
@@ -16,16 +16,14 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: MainColors.mainPageColor,
-      body: SafeArea(
+    return SafeArea(
         child: SingleChildScrollView(
           // controller: controller,
           child: Column(
             children: const [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: SearchBar(),
+                child: SearchBar(pageName: "Home"),
               ),
               CarouselSection(),
               Padding(
@@ -43,25 +41,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-              ),
-              label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.local_movies), label: "Film"),
-          BottomNavigationBarItem(icon: Icon(Icons.tv), label: "Tv"),
-          BottomNavigationBarItem(icon: Icon(Icons.layers), label: "Layers"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Person"),
-        ],
-        backgroundColor: MainColors.mainPageColor,
-        unselectedIconTheme:IconThemeData(color: Colors.grey,size: 40) ,
-        selectedIconTheme: IconThemeData(color: MainColors.redPageColor,size: 40),
-        showSelectedLabels: false,
-      ),
-    );
+      );
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'Home/Home.dart';
+import 'Movies/MoviesMain.dart';
+import 'main_page.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -19,7 +21,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       initialRoute: "/",
-      routes: {"/": (context) => Home()},
+      routes: {
+        "/": (context) => MainPage(),
+        "/movies":(context) => Movies()
+      },
     );
   }
 }
