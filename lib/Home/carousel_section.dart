@@ -16,20 +16,7 @@ class CarouselSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child:CachedNetworkImage(
-                        imageUrl:
-                            ImagesModel.carouselImages[itemIndex],
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) {
-                          return Center(
-                              child: SizedBox(
-                            width: 40.0,
-                            height: 40.0,
-                            child: new CircularProgressIndicator(),
-                          ));
-                        },
-                        errorWidget: (context, url, error) => Icon(Icons.error),
-                      ) ),
+                child:Image.asset(ImagesModel.carouselImages[itemIndex],fit: BoxFit.fill,), ),
           ),
       options: CarouselOptions(viewportFraction: 0.9,height: 170,autoPlay: true),
     );
