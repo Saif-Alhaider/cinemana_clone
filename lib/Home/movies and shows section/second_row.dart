@@ -1,9 +1,14 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cinemana_clone/Reusable%20Widgets/movie_card/movie_poster.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 
 import '../../MainColors.dart';
+import '../../Reusable Widgets/movie_card/movie_card.dart';
+import '../../Reusable Widgets/movie_card/rating_secton.dart';
+import '../../Reusable Widgets/movie_card/title_section.dart';
 import '../../Reusable Widgets/text_widget.dart';
 
 class SecondRow extends StatelessWidget {
@@ -27,56 +32,7 @@ class SecondRow extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: SizedBox(
               width: 150,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 200,
-                    width: double.maxFinite,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        "https://api.lorem.space/image/movie?w=150&h=${220 + index}&$hash",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    width: double.maxFinite,
-                    height: 18,
-                    child: CinemanaText(
-                      text: lorem(paragraphs: 1, words: 2),
-                      fontsize: 18,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: MainColors.imdbColor,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 2.5),
-                          child: CinemanaText(
-                            text: "IMDB",
-                            fontsize: 12,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      CinemanaText(
-                        text:
-                            "${(Random().nextDouble() * 10).toStringAsFixed(2)}",
-                        fontsize: 18,
-                      )
-                    ],
-                  )
-                ],
-              ),
+              child: MovieCard(hash: hash, index: index),
             ),
           );
         },

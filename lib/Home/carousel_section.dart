@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -15,10 +16,20 @@ class CarouselSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  ImagesModel.carouselImages[itemIndex],
-                  fit: BoxFit.fill,
-                )),
+                child:CachedNetworkImage(
+                        imageUrl:
+                            ImagesModel.carouselImages[itemIndex],
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) {
+                          return Center(
+                              child: SizedBox(
+                            width: 40.0,
+                            height: 40.0,
+                            child: new CircularProgressIndicator(),
+                          ));
+                        },
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ) ),
           ),
       options: CarouselOptions(viewportFraction: 0.9,height: 170,autoPlay: true),
     );
