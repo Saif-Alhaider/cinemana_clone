@@ -1,7 +1,3 @@
-from os import stat
-from sre_parse import State
-from django.utils import timezone
-from turtle import title
 from django.test import TestCase
 from .models import Videos, PublishStateChoices
 from django.utils.text import slugify
@@ -27,7 +23,7 @@ class VideoTests(TestCase):
         qs = Videos.objects.draft()
         self.assertTrue(qs.exists())
 
-    def test_published_state(self):
+    def test_published_state(self): 
 
         qs = Videos.objects.publish()
         self.assertTrue(qs.exists())
