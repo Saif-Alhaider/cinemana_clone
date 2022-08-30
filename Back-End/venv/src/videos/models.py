@@ -59,7 +59,7 @@ class Videos(models.Model):
     # auto_now=True will give the object time when it's updated
 
     created_time_stamp = models.DateTimeField(auto_now_add=True)
-    edited_time_stamp = models.DateTimeField(auto_now=True)
+    update = models.DateTimeField(auto_now=True)
 
     objects = VideosManager()
 
