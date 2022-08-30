@@ -1,5 +1,6 @@
 from django.test import TestCase
-from .models import Videos, PublishStateChoices
+from .models import Videos
+from cinemana_project.db.models import PublishStateChoices
 from django.utils.text import slugify
 # Create your tests here.
 

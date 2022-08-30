@@ -4,15 +4,14 @@ from django.utils import timezone
 from django.db.models.signals import pre_save
 # importing slugigy function to set slug field value
 from django.utils.text import slugify
+# 
+from cinemana_project.db.models import PublishStateChoices
+# 
+from cinemana_project.db.receivers import pre_save_publish_time_stamp,pre_save_slugify
 from django.db import models
 # Create your models here.
 
-# seperating publish choices in another class to make it globale and more clean code
 
-
-class PublishStateChoices(models.TextChoices):
-    PUBLISHED = "PU", "Published"
-    DRAFT = "DR", "Draft"
 
 # to filter values easily instead of typing code many times more simpler more cleaner
 
@@ -87,27 +86,10 @@ class PublishedVideos(Videos):
         verbose_name_plural = "Published Videos"
 
 
-def pre_save_publish_time_stamp(sender, instance, *args, **kwargs):
-    is_published = instance.publish_time_stamp is None and instance.state == PublishStateChoices.PUBLISHED
 
-    is_drafted = instance.state == PublishStateChoices.DRAFT
-
-    if is_published:
-        instance.active = True
-        now = timezone.now()
-        instance.publish_time_stamp = now
-
-    elif is_drafted:
-        instance.publish_time_stamp = None
-
-
+        
 pre_save.connect(pre_save_publish_time_stamp, AllVideos)
 pre_save.connect(pre_save_publish_time_stamp, Videos)
 
-def pre_save_slugify(sender,instance,*args, **kwargs):
-    if instance.slug is None:
-        title = instance.title
-        instance.slug = slugify(title)
-        
 pre_save.connect(pre_save_slugify, AllVideos)
 pre_save.connect(pre_save_slugify, Videos)
