@@ -7,9 +7,9 @@ from django.utils.text import slugify
 
 class VideoTests(TestCase):
     def setUp(self):
-        self.obj_a = Videos.objects.create(title="video-1")
+        self.obj_a = Videos.objects.create(title="video-1",video_id="djanwdkja")
         Videos.objects.create(
-            title="video-2", state=PublishStateChoices.PUBLISHED)
+            title="video-2", state=PublishStateChoices.PUBLISHED,video_id="abc")
 
     def test_checkQueries(self):
         qs = Videos.objects.all()

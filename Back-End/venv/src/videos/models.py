@@ -44,7 +44,7 @@ class Videos(models.Model):
     # ----------------------------------------
     slug = models.CharField(max_length=220, null=True, blank=True)
 
-    video_id = models.CharField(max_length=220)
+    video_id = models.CharField(max_length=220,unique=True)
     # ----------state fields--------------
     active = models.BooleanField(default=False)
     state = models.CharField(
