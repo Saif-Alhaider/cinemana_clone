@@ -4,12 +4,13 @@ from django.utils import timezone
 from turtle import title
 from django.test import TestCase
 from .models import Videos, PublishStateChoices
+from django.utils.text import slugify
 # Create your tests here.
 
 
 class VideoTests(TestCase):
     def setUp(self):
-        Videos.objects.create(title="video-1")
+        self.obj_a = Videos.objects.create(title="video-1")
         Videos.objects.create(
             title="video-2", state=PublishStateChoices.PUBLISHED)
 
@@ -29,4 +30,10 @@ class VideoTests(TestCase):
     def test_published_state(self):
 
         qs = Videos.objects.publish()
+        self.assertTrue(qs.exists())
+    
+    def test_slug_case(self):
+        firstObjTitle = self.obj_a.title
+        firstObjslug = slugify(firstObjTitle)
+        qs = Videos.objects.filter(slug=firstObjslug)
         self.assertTrue(qs.exists())

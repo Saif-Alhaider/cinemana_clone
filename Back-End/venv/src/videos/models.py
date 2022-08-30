@@ -2,7 +2,8 @@
 from django.utils import timezone
 # using pre_save to give some fields valeus when the object is created
 from django.db.models.signals import pre_save
-
+# importing slugigy function to set slug field value
+from django.utils.text import slugify
 from django.db import models
 # Create your models here.
 
@@ -38,13 +39,19 @@ class VideosManager(models.Manager):
 
 
 class Videos(models.Model):
+    # ---------- content text fields ------------------
     title = models.CharField(max_length=220)
     description = models.TextField(max_length=220, blank=True, null=True)
+    # ----------------------------------------
     slug = models.CharField(max_length=220, null=True, blank=True)
+
     video_id = models.CharField(max_length=220)
+    # ----------state fields--------------
     active = models.BooleanField(default=False)
     state = models.CharField(
         max_length=2, choices=PublishStateChoices.choices, default=PublishStateChoices.DRAFT)
+
+    # --------------------- time fields ------------------------
 
     publish_time_stamp = models.DateTimeField(
         auto_now=False, auto_now_add=False, blank=True, null=True)
@@ -84,7 +91,7 @@ def pre_save_publish_time_stamp(sender, instance, *args, **kwargs):
     is_published = instance.publish_time_stamp is None and instance.state == PublishStateChoices.PUBLISHED
 
     is_drafted = instance.state == PublishStateChoices.DRAFT
-    
+
     if is_published:
         instance.active = True
         now = timezone.now()
@@ -96,3 +103,11 @@ def pre_save_publish_time_stamp(sender, instance, *args, **kwargs):
 
 pre_save.connect(pre_save_publish_time_stamp, AllVideos)
 pre_save.connect(pre_save_publish_time_stamp, Videos)
+
+def pre_save_slugify(sender,instance,*args, **kwargs):
+    if instance.slug is None:
+        title = instance.title
+        instance.slug = slugify(title)
+        
+pre_save.connect(pre_save_slugify, AllVideos)
+pre_save.connect(pre_save_slugify, Videos)
