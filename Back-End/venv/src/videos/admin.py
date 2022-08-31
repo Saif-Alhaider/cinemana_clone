@@ -5,8 +5,8 @@ from .models import AllVideos,PublishedVideos
 
 
 class AllVideosAdmin(admin.ModelAdmin):
-    list_display = ['title','video_id','published','publish_time_stamp']
-    readonly_fields = ['publish_time_stamp','active']
+    list_display = ['title','video_id','published','publish_time_stamp','published','linked_Playlist_id']
+    readonly_fields = ['publish_time_stamp','active','slug']
     class Meta:
         model = AllVideos
         
